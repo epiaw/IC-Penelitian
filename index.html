@@ -513,7 +513,7 @@ function deleteResp(id) {
   renderList();
   showToast('🗑️ Data responden dihapus');
 
-  if (SCRIPT_URL && SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbwQlXS20X1oAe1QWT4pOaUY3-J8rT8qPLn3q-2REqcVgeWpjLVVZ0oPI9F-9mvNIlEP/exec") {
+  if (SCRIPT_URL && SCRIPT_URL !== "PASTE_URL_WEB_APP_DI_SINI") {
     fetch(SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -763,7 +763,7 @@ async function saveResponden() {
     showToast('⚠️ Lengkapi data wajib (nama, usia, jenis kelamin, No. RM, keputusan, tanggal)');
     return;
   }
-  if (isCanvasBlank(canvasSubjek)) {
+  if (!getSigData('sig-subjek')) {
     showToast('⚠️ Tanda tangan subjek/wali belum diisi!');
     return;
   }
@@ -777,9 +777,6 @@ async function saveResponden() {
     return;
   }
 
-  r.ttdSubjek = canvasSubjek.toDataURL();
-  r.sigSubjek = r.ttdSubjek;
-  r.ttdPetugas = canvasPetugas ? canvasPetugas.toDataURL() : '';
   r.sigPeneliti = PENELITI_SIG;
 
   const isEdit = !!editingId;
